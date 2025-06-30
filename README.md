@@ -20,6 +20,7 @@ This site was built from the ground up using a modern, performance-focused stack
 * **CSS Framework:** [Tailwind CSS](https://tailwindcss.com/)
 * **Animations:** [GSAP (GreenSock Animation Platform)](https://greensock.com/gsap/)
 * **Data Visualization:** [Chart.js](https://www.chartjs.org/)
+* **Analytics:** [PostHog](https://posthog.com/)
 
 The project is contained within a single `index.html` file and does not use complex JavaScript frameworks to ensure maximum loading speed.
 
@@ -33,6 +34,14 @@ The project is contained within a single `index.html` file and does not use comp
 * **Bilingual Functionality:** Full support for Spanish and English.
 * **Informative Tooltips:** Interactivity in my toolkit to display years of experience.
 
+### 📈 Analytics
+
+To understand user interaction and continuously improve the experience, this project uses PostHog for product analytics. The following custom events are tracked:
+
+* `contact_button_clicked`: Fired when a user clicks the main "Contact" button in the header.
+* `send_message_clicked`: Fired when a user clicks the "Send Message" button in the contact section.
+* `download_cv_clicked`: Fired when a user clicks the "Download CV (PDF)" button.
+
 ### 🔗 Contact
 
 Interested in "signing"? Let's talk.
@@ -41,4 +50,5 @@ Interested in "signing"? Let's talk.
 * **Email:** `pab.arroyo@outlook.com`
 
 ---
+
 *This project was designed and built by Pablo Arroyo in collaboration with Gemini.*
