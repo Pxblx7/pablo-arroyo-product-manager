@@ -1,12 +1,9 @@
 <!DOCTYPE html>
-<!-- Chosen Palette: "Fut-Noir" - A high-contrast palette using a deep black background (#0a0a0a), crisp white text, and a vibrant lime green accent (#a3e635). This was chosen collaboratively to create an energetic, modern, and "insane" aesthetic, mirroring a high-tech sports interface, which directly aligns with the "player signing" (fichaje) concept for the CV. It intentionally deviates from a standard light/neutral theme to create a memorable and impactful user experience, as requested and approved by the user. -->
-<!-- Application Structure Plan: This final version focuses on perfecting the user experience. 1. **Hero:** Identity unchanged. 2. **Stats:** The Radar Chart bug is fixed for correct visualization, and the descriptive tags are restored for full context. 3. **Trajectory & Highlights:** Core sections remain. 4. **New "Toolkit" Section:** A brand-new section is added to display the user's full tool stack, separated into Project Management and Tech Stack categories, fulfilling a key user request. 5. **Achievements & Education:** This section's content is reordered for a more logical narrative flow (education -> certifications -> achievements). 6. **Contact:** The call-to-action. The application structure is now feature-complete. -->
-<!-- Visualization & Content Choices: 
-- Report Info: Quantifiable achievements & skills. Goal: Compare/Inform. Viz: **Radar Chart (Fixed & Restyled)**. Interaction: GSAP animation. Justification: Corrected the animation and styling bug that made the chart small and illegible. It now renders correctly. Library/Method: Chart.js/Canvas.
-- Report Info: Core skills and CV data points. Goal: Organize/Inform. Viz: **Restored Descriptive Tags** under each stat. Interaction: N/A. Justification: Re-added the detailed tags per user request to provide specific evidence for each skill score. Library/Method: HTML/CSS.
-- Report Info: Education, Certifications, Achievements. Goal: Inform/Engage. Viz: **New Interactive Horizontal Carousel**. Interaction: GSAP-powered scrolling and card animations. Justification: Transforms a static list into a dynamic, visually "insane" experience, fulfilling the user's request for a more engaging presentation. Library/Method: HTML/CSS/GSAP.
+<!-- 
+  Color Palette Chosen: "Fut-Noir" - A high-contrast palette using a deep black background (#0a0a0a), crisp white text, and a vibrant lime green accent (#a3e635).
+  This palette was selected to create an energetic, modern, and "insane" aesthetic, mirroring a high-tech sports interface, which directly aligns with the "player signing" (fichaje) concept for the CV.
+  It intentionally deviates from a standard light/neutral theme to create a memorable and impactful user experience.
 -->
-<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
 <html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -54,6 +51,16 @@
         .hero-bg { background-image: linear-gradient(rgba(10, 10, 10, 0.9), rgba(10, 10, 10, 1)), url('https://images.unsplash.com/photo-1519703444234-a2b8cca38a49?q=80&w=2070&auto=format&fit=crop'); background-size: cover; background-position: center; }
         .timeline-line { background-color: #374151; }
         .timeline-dot { background-color: #a3e635; outline: 4px solid #0a0a0a; }
+        /* Style for timeline cards */
+        .timeline-card {
+            background-color: #111827; /* bg-gray-900 */
+            border: 1px solid #1f2937; /* border-gray-800 */
+            transition: all 0.3s ease-in-out;
+        }
+        .timeline-card:hover {
+            border-color: rgba(163, 230, 53, 0.5); /* border-lime-400/50 */
+            transform: translateY(-4px);
+        }
         .timeline-content .company-logo { opacity: 0.3; filter: grayscale(100%); transition: all 0.3s ease; }
         .timeline-item:hover .timeline-content .company-logo { opacity: 1; filter: grayscale(0%); transform: scale(1.1); }
         .card-item { background-color: #111827; border: 1px solid #1f1f1f; transition: transform 0.3s ease, border-color 0.3s ease; height: 100%; }
@@ -80,7 +87,6 @@
         .carousel-button:hover { background-color: #a3e635; color: #0a0a0a; }
         .carousel-button.prev { left: -1rem; }
         .carousel-button.next { right: -1rem; }
-        #lang-toggle { cursor: pointer; }
 
         /* Mobile Timeline Adjustment */
         @media (max-width: 425px) {
@@ -160,12 +166,13 @@
                 </div>
                 <div class="flex-shrink-0 flex items-center gap-6">
                     <button id="contact-btn" data-translate-key="navContact" class="font-bold py-2 px-4 rounded-md font-display uppercase text-sm bg-lime-400 text-black hover:bg-lime-300 transition-colors">Contact</button>
-                    <div id="lang-toggle" class="hidden sm:flex items-center space-x-2 text-sm font-bold font-display">
+                    <!-- Language switcher for desktop -->
+                    <div id="lang-toggle-desktop" class="hidden sm:flex items-center space-x-2 text-sm font-bold font-display cursor-pointer">
                         <span id="lang-en" class="text-lime-400">EN</span>
                         <div class="w-8 h-4 bg-gray-700 rounded-full p-0.5 flex items-center">
                             <div id="lang-indicator" class="w-3 h-3 bg-lime-400 rounded-full transform transition-transform duration-300 ease-in-out"></div>
                         </div>
-                        <span id="lang-es" class="text-gray-500">ES</span>
+                        <span id="lang-es" class="text-gray-400">ES</span>
                     </div>
                 </div>
             </div>
@@ -174,7 +181,7 @@
 
      <!-- Mobile Menu Drawer -->
     <div id="mobile-menu-drawer" class="fixed top-0 left-0 h-full w-72 bg-gray-900 z-[60] transform -translate-x-full transition-transform duration-300 ease-in-out">
-        <div class="p-6">
+        <div class="p-6 h-full flex flex-col">
             <div class="flex justify-between items-center mb-10">
                  <a href="#hero" class="text-3xl font-bold tracking-wider text-white font-display">PA<span class="text-lime-400">.</span></a>
                  <button id="close-drawer-btn" class="text-white">
@@ -188,16 +195,32 @@
                  <a href="#logros" class="nav-link-mobile" data-translate-key="navAchievements">Achievements</a>
                  <a href="#herramientas" class="nav-link-mobile" data-translate-key="navTools">Toolkit</a>
             </nav>
-            <div class="absolute bottom-8 left-6 flex items-center gap-x-6">
-                <a href="https://wa.me/524423653095" target="_blank" aria-label="WhatsApp" class="text-gray-400 hover:text-lime-400 transition-colors">
-                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.894 11.892-1.99 0-3.902-.539-5.587-1.544l-6.323 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.447-4.433-9.886-9.888-9.886-5.448 0-9.886 4.434-9.889 9.885.002 2.021.59 3.927 1.696 5.611l-1.026 3.748 3.828-1.004zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.273-.099-.471-.148-.67.148-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.67-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
-                </a>
-                <a href="mailto:pab.arroyo@outlook.com" aria-label="Email" class="text-gray-400 hover:text-lime-400 transition-colors">
-                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
-                </a>
-                <a href="https://www.linkedin.com/in/pablo-estéfano-arroyo-garrido" target="_blank" aria-label="LinkedIn" class="text-gray-400 hover:text-lime-400 transition-colors">
-                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                </a>
+            
+            <!-- Container for the bottom elements of the menu -->
+            <div class="mt-auto">
+                <!-- Language switcher for mobile -->
+                <div class="mb-8">
+                    <div id="lang-toggle-mobile" class="flex sm:hidden items-center justify-start space-x-2 text-sm font-bold font-display cursor-pointer">
+                        <span id="lang-en-mobile" class="text-lime-400">EN</span>
+                        <div class="w-8 h-4 bg-gray-700 rounded-full p-0.5 flex items-center">
+                            <div id="lang-indicator-mobile" class="w-3 h-3 bg-lime-400 rounded-full transform transition-transform duration-300 ease-in-out"></div>
+                        </div>
+                        <span id="lang-es-mobile" class="text-gray-400">ES</span>
+                    </div>
+                </div>
+                
+                <!-- Social media icons -->
+                <div class="flex items-center justify-start gap-x-6">
+                    <a href="https://wa.me/524423653095" target="_blank" aria-label="WhatsApp" class="text-gray-300 hover:text-lime-400 transition-colors">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.894 11.892-1.99 0-3.902-.539-5.587-1.544l-6.323 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.447-4.433-9.886-9.888-9.886-5.448 0-9.886 4.434-9.889 9.885.002 2.021.59 3.927 1.696 5.611l-1.026 3.748 3.828-1.004zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.273-.099-.471-.148-.67.148-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.67-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                    </a>
+                    <a href="mailto:pab.arroyo@outlook.com" aria-label="Email" class="text-gray-300 hover:text-lime-400 transition-colors">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/pablo-estéfano-arroyo-garrido" target="_blank" aria-label="LinkedIn" class="text-gray-300 hover:text-lime-400 transition-colors">
+                        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
@@ -223,7 +246,7 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16 gsap-reveal">
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase" data-translate-key="statsTitle">PROFESSIONAL PROFILE</h2>
-                    <p class="mt-2 text-gray-400" data-translate-key="statsSubtitle">Performance analysis in key areas.</p>
+                    <p class="mt-2 text-gray-300" data-translate-key="statsSubtitle">Performance analysis in key areas.</p>
                 </div>
                 <div class="chart-container gsap-reveal">
                     <canvas id="stats-radar-chart"></canvas>
@@ -235,7 +258,7 @@
                         <div class="bg-gray-900 p-4 rounded-lg"><h4 class="font-bold font-display text-lg" data-translate-key="skillStrategy">Strategy & Roadmap</h4><p class="text-5xl font-bold font-display text-lime-400">94</p><div class="mt-2 flex flex-wrap justify-center gap-2"><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full" data-translate-key="skillStrategyTag1">+15 Projects/Year</span> <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full" data-translate-key="skillStrategyTag2">Full Product Lifecycle</span></div></div>
                         <div class="bg-gray-900 p-4 rounded-lg"><h4 class="font-bold font-display text-lg" data-translate-key="skillBusiness">Business Impact</h4><p class="text-5xl font-bold font-display text-lime-400">92</p><div class="mt-2 flex flex-wrap justify-center gap-2"><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full" data-translate-key="skillBusinessTag1">+$1.3M USD Sales</span> <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full" data-translate-key="skillBusinessTag2">$700K USD Savings</span></div></div>
                         <div class="bg-gray-900 p-4 rounded-lg"><h4 class="font-bold font-display text-lg" data-translate-key="skillLeadership">Leadership & Communication</h4><p class="text-5xl font-bold font-display text-lime-400">90</p><div class="mt-2 flex flex-wrap justify-center gap-2"><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full" data-translate-key="skillLeadershipTag1">Team +20</span> <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full" data-translate-key="skillLeadershipTag2">Global Management</span></div></div>
-                        <div class="bg-gray-900 p-4 rounded-lg"><h4 class="font-bold font-display text-lg" data-translate-key="skillRisk">Technical & Risk Management</h4><p class="text-5xl font-bold font-display text-lime-400">88</p><div class="mt-2 flex flex-wrap justify-center gap-2"><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">MVP FedEx</span> <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">RPA 87%</span></div></div>
+                        <div class="bg-gray-900 p-4 rounded-lg"><h4 class="font-bold font-display text-lg" data-translate-key="skillRisk">Technical & Risk Management</h4><p class="text-5xl font-bold font-display text-lime-400">88</p><div class="mt-2 flex flex-wrap justify-center gap-2"><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">MVP FedEx</span> <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">RPA 87% time saving</span></div></div>
                         <div class="bg-gray-900 p-4 rounded-lg"><h4 class="font-bold font-display text-lg" data-translate-key="skillData">Data Analysis</h4><p class="text-5xl font-bold font-display text-lime-400">85</p><div class="mt-2 flex flex-wrap justify-center gap-2"><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">Power BI</span> <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">Google Analytics</span></div></div>
                     </div>
                 </div>
@@ -244,20 +267,24 @@
 
         <section id="trayectoria" class="py-24 bg-black">
              <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 gsap-reveal"><h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase" data-translate-key="trajectoryTitle">PROFESSIONAL TRAJECTORY</h2><p class="mt-2 text-gray-400" data-translate-key="trajectorySubtitle">My career, step by step.</p></div>
+                <div class="text-center mb-16 gsap-reveal"><h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase" data-translate-key="trajectoryTitle">PROFESSIONAL TRAJECTORY</h2><p class="mt-2 text-gray-300" data-translate-key="trajectorySubtitle">My career, step by step.</p></div>
                 <div class="relative max-w-4xl mx-auto">
                     <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 timeline-line"></div>
-                    <div class="relative gsap-reveal timeline-item mb-12"><div class="flex items-center md:justify-end w-full"><div class="timeline-content w-full md:w-1/2 md:pr-12 group"><div class="p-4 rounded-lg"><div class="flex items-center justify-start md:justify-end gap-4 mb-2"><h3 class="font-bold text-xl font-display text-lime-400">Zebrands</h3><img src="https://placehold.co/80x80/FFFFFF/000000?text=ZB" alt="Zebrands company logo" class="company-logo h-10 w-10 rounded-full"></div><p class="text-sm text-gray-400 text-left md:text-right" data-translate-key="zebrandsRole">Technology Product Manager</p><time class="text-sm font-medium text-gray-500 block text-left md:text-right" data-translate-key="zebrandsDate">Aug 2022 - Present</time><p class="mt-2 text-gray-300 text-left md:text-right" data-translate-key="zebrandsDesc">Led +15 annual projects. Achieved +$500K USD in savings with a FedEx MVP. Generated +$1.1M USD through e-commerce strategies.</p></div></div></div><div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div></div>
-                    <div class="relative gsap-reveal timeline-item mb-12"><div class="flex items-center md:justify-start w-full"><div class="timeline-content w-full md:w-1/2 md:pl-12 group"><div class="p-4 rounded-lg"><div class="flex items-center gap-4 mb-2"><img src="https://placehold.co/80x80/1E3A8A/FFFFFF?text=TEC" alt="Tecnológico de Monterrey university logo" class="company-logo h-10 w-10 rounded-full"><h3 class="font-bold text-xl font-display text-lime-400">Tecnológico de Monterrey</h3></div><p class="text-sm text-gray-400" data-translate-key="tecRole">Project Management Professor</p><time class="text-sm font-medium text-gray-500 block" data-translate-key="tecDate">Aug 2021 - Present</time><p class="mt-2 text-gray-300" data-translate-key="tecDesc">Training future engineers in agile methodologies, with 90% application in real projects with companies like Coca-Cola FEMSA.</p></div></div></div><div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div></div>
-                    <div class="relative gsap-reveal timeline-item mb-12"><div class="flex items-center md:justify-end w-full"><div class="timeline-content w-full md:w-1/2 md:pr-12 group"><div class="p-4 rounded-lg"><div class="flex items-center justify-start md:justify-end gap-4 mb-2"><h3 class="font-bold text-xl font-display text-lime-400">Natgas</h3><img src="https://placehold.co/80x80/047857/FFFFFF?text=NG" alt="Natgas company logo" class="company-logo h-10 w-10 rounded-full"></div><p class="text-sm text-gray-400 text-left md:text-right" data-translate-key="natgasRole">IT Project Manager</p><time class="text-sm font-medium text-gray-500 block text-left md:text-right" data-translate-key="natgasDate">Nov 2018 - Aug 2022</time><p class="mt-2 text-gray-300 text-left md:text-right" data-translate-key="natgasDesc">Managed a $420K USD budget. Implemented RPA to reduce repetitive tasks by 87%. Improved team efficiency by 25%.</p></div></div></div><div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div></div>
-                    <div class="relative gsap-reveal timeline-item"><div class="flex items-center md:justify-start w-full"><div class="timeline-content w-full md:w-1/2 md:pl-12 group"><div class="p-4 rounded-lg"><div class="flex items-center gap-4 mb-2"><img src="https://placehold.co/80x80/FBBF24/000000?text=PLT" alt="Profesionales en Logística y Transporte company logo" class="company-logo h-10 w-10 rounded-full"><h3 class="font-bold text-xl font-display text-lime-400" data-translate-key="peltCompany">Profesionales en Logística y Transporte</h3></div><p class="text-sm text-gray-400" data-translate-key="peltRole">Logistics Consultant</p><time class="text-sm font-medium text-gray-500 block" data-translate-key="peltDate">Jul 2017 - Oct 2018</time><p class="mt-2 text-gray-300" data-translate-key="peltDesc">Advised companies like Cargill and Uber Freight, identifying 15-20% savings opportunities in transport and supply chain.</p></div></div></div><div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div></div>
+                    <!-- Timeline Item 1 -->
+                    <div class="relative gsap-reveal timeline-item mb-12"><div class="flex items-center md:justify-end w-full"><div class="timeline-content w-full md:w-1/2 md:pr-12 group"><div class="p-6 rounded-lg timeline-card"><div class="flex items-center justify-start md:justify-end gap-4 mb-2"><h3 class="font-bold text-xl font-display text-lime-400">Zebrands</h3><img src="https://placehold.co/80x80/FFFFFF/000000?text=ZB" alt="Zebrands company logo" class="company-logo h-10 w-10 rounded-full"></div><p class="text-sm text-gray-400 text-left md:text-right" data-translate-key="zebrandsRole">Technology Product Manager</p><time class="text-sm font-medium text-gray-500 block text-left md:text-right" data-translate-key="zebrandsDate">Aug 2022 - Present</time><p class="mt-2 text-gray-300 text-left md:text-right" data-translate-key="zebrandsDesc">Led +15 annual projects. Achieved +$500K USD in savings with a FedEx MVP. Generated +$1.1M USD through e-commerce strategies.</p></div></div></div><div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div></div>
+                    <!-- Timeline Item 2 -->
+                    <div class="relative gsap-reveal timeline-item mb-12"><div class="flex items-center md:justify-start w-full"><div class="timeline-content w-full md:w-1/2 md:pl-12 group"><div class="p-6 rounded-lg timeline-card"><div class="flex items-center gap-4 mb-2"><img src="https://placehold.co/80x80/1E3A8A/FFFFFF?text=TEC" alt="Tecnológico de Monterrey university logo" class="company-logo h-10 w-10 rounded-full"><h3 class="font-bold text-xl font-display text-lime-400">Tecnológico de Monterrey</h3></div><p class="text-sm text-gray-400" data-translate-key="tecRole">Project Management Professor</p><time class="text-sm font-medium text-gray-500 block" data-translate-key="tecDate">Aug 2021 - Present</time><p class="mt-2 text-gray-300" data-translate-key="tecDesc">Training future engineers in agile methodologies, with 90% application in real projects with companies like Coca-Cola FEMSA.</p></div></div></div><div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div></div>
+                    <!-- Timeline Item 3 -->
+                    <div class="relative gsap-reveal timeline-item mb-12"><div class="flex items-center md:justify-end w-full"><div class="timeline-content w-full md:w-1/2 md:pr-12 group"><div class="p-6 rounded-lg timeline-card"><div class="flex items-center justify-start md:justify-end gap-4 mb-2"><h3 class="font-bold text-xl font-display text-lime-400">Natgas</h3><img src="https://placehold.co/80x80/047857/FFFFFF?text=NG" alt="Natgas company logo" class="company-logo h-10 w-10 rounded-full"></div><p class="text-sm text-gray-400 text-left md:text-right" data-translate-key="natgasRole">IT Project Manager</p><time class="text-sm font-medium text-gray-500 block text-left md:text-right" data-translate-key="natgasDate">Nov 2018 - Aug 2022</time><p class="mt-2 text-gray-300 text-left md:text-right" data-translate-key="natgasDesc">Managed a $420K USD budget. Implemented RPA to reduce repetitive tasks by 87%. Improved team efficiency by 25%.</p></div></div></div><div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div></div>
+                    <!-- Timeline Item 4 -->
+                    <div class="relative gsap-reveal timeline-item"><div class="flex items-center md:justify-start w-full"><div class="timeline-content w-full md:w-1/2 md:pl-12 group"><div class="p-6 rounded-lg timeline-card"><div class="flex items-center gap-4 mb-2"><img src="https://placehold.co/80x80/FBBF24/000000?text=PLT" alt="Profesionales en Logística y Transporte company logo" class="company-logo h-10 w-10 rounded-full"><h3 class="font-bold text-xl font-display text-lime-400" data-translate-key="peltCompany">Profesionales en Logística y Transporte</h3></div><p class="text-sm text-gray-400" data-translate-key="peltRole">Logistics Consultant</p><time class="text-sm font-medium text-gray-500 block" data-translate-key="peltDate">Jul 2017 - Oct 2018</time><p class="mt-2 text-gray-300" data-translate-key="peltDesc">Advised companies like Cargill and Uber Freight, identifying 15-20% savings opportunities in transport and supply chain.</p></div></div></div><div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div></div>
                 </div>
             </div>
         </section>
         
         <section id="proyectos" class="py-24 bg-black">
              <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 gsap-reveal"><h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase" data-translate-key="projectsTitle">Featured Projects</h2><p class="mt-2 text-gray-400" data-translate-key="projectsSubtitle">Success stories that demonstrate impact.</p></div>
+                <div class="text-center mb-16 gsap-reveal"><h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase" data-translate-key="projectsTitle">Featured Projects</h2><p class="mt-2 text-gray-300" data-translate-key="projectsSubtitle">Success stories that demonstrate impact.</p></div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="card-item p-6 rounded-lg flex flex-col gsap-reveal"><div class="flex items-center gap-4"><div class="text-3xl">🚚</div><h3 class="text-xl font-bold font-display" data-translate-key="projectFedexTitle">FedEx Integration MVP</h3></div><p class="mt-4 text-gray-400 flex-grow" data-translate-key="projectFedexDesc">Designed and launched an MVP to connect our WMS with FedEx, automating 18,500 packages and reducing manual errors by 40%.</p><div class="mt-4"><p class="font-bold text-lime-400 text-lg" data-translate-key="projectFedexResult">Result: +$500K USD in annual savings.</p><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full mt-2 inline-block">at Zebrands</span></div></div>
                     <div class="card-item p-6 rounded-lg flex flex-col gsap-reveal"><div class="flex items-center gap-4"><div class="text-3xl">💰</div><h3 class="text-xl font-bold font-display" data-translate-key="projectCrossSellTitle">Cross-sell Strategy</h3></div><p class="mt-4 text-gray-400 flex-grow" data-translate-key="projectCrossSellDesc">Implemented UX improvements to boost cross-selling and up-selling in e-commerce.</p><div class="mt-4"><p class="font-bold text-lime-400 text-lg" data-translate-key="projectCrossSellResult">Result: +$450K USD in extra revenue.</p><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full mt-2 inline-block">at Zebrands</span></div></div>
@@ -271,7 +298,7 @@
 
         <section id="logros" class="py-24 bg-black overflow-hidden">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 gsap-reveal"><h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase" data-translate-key="achievementsTitle">ACHIEVEMENTS & EDUCATION</h2><p class="mt-2 text-gray-400" data-translate-key="achievementsSubtitle">My accolades and the foundation of my career.</p></div>
+                <div class="text-center mb-16 gsap-reveal"><h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase" data-translate-key="achievementsTitle">ACHIEVEMENTS & EDUCATION</h2><p class="mt-2 text-gray-300" data-translate-key="achievementsSubtitle">My accolades and the foundation of my career.</p></div>
                 <div class="relative gsap-reveal">
                     <div class="achievement-carousel-wrapper">
                         <div class="achievement-carousel flex space-x-4 md:space-x-8 pb-8 px-4">
@@ -291,7 +318,7 @@
 
         <section id="herramientas" class="py-24 bg-black">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16 gsap-reveal"><h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase" data-translate-key="toolsTitle">MY TOOLKIT</h2><p class="mt-2 text-gray-400" data-translate-key="toolsSubtitle">The stack I use to build and manage.</p></div>
+                <div class="text-center mb-16 gsap-reveal"><h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase" data-translate-key="toolsTitle">MY TOOLKIT</h2><p class="mt-2 text-gray-300" data-translate-key="toolsSubtitle">The stack I use to build and manage.</p></div>
                 <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
                     <div class="gsap-reveal">
                         <h3 class="text-2xl font-bold font-display text-lime-400 mb-6 text-center" data-translate-key="toolsPM">Project Management</h3>
@@ -325,7 +352,7 @@
             <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
                  <div class="gsap-reveal">
                     <h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase" data-translate-key="contactTitle">READY TO SIGN?</h2>
-                    <p class="mt-2 text-gray-400 max-w-xl mx-auto" data-translate-key="contactSubtitle">I'm looking for a team where I can continue to build impactful products. Let's talk.</p>
+                    <p class="mt-2 text-gray-300 max-w-xl mx-auto" data-translate-key="contactSubtitle">I'm looking for a team where I can continue to build impactful products. Let's talk.</p>
                     <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
                          <a id="send-message-btn" href="mailto:pab.arroyo@outlook.com" class="w-full sm:w-auto text-center bg-lime-400 text-black font-bold py-3 px-6 rounded-md font-display uppercase text-lg hover:bg-lime-300 transition-colors" data-translate-key="contactSendMsg">Send Message</a>
                          <a href="CV_ENG_Pablo_Arroyo_ProductManager.pdf" download id="download-cv" class="w-full sm:w-auto text-center bg-gray-700 text-white font-bold py-3 px-6 rounded-md font-display uppercase text-lg hover:bg-gray-600 transition-colors" data-translate-key="contactDownload">Download CV (PDF)</a>
@@ -338,15 +365,15 @@
     <footer class="bg-black border-t border-gray-800">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
             <div class="flex flex-col sm:flex-row justify-between items-center gap-y-4">
-                <p class="text-gray-500 text-sm text-center sm:text-left" data-translate-key="footerCopyright">© 2025 Pablo Arroyo. Designed and built with passion.</p>
+                <p class="text-gray-400 text-sm text-center sm:text-left" data-translate-key="footerCopyright">© 2025 Pablo Arroyo. Designed and built with passion.</p>
                 <div class="flex items-center gap-x-6">
-                    <a href="https://wa.me/524423653095" target="_blank" aria-label="WhatsApp" class="text-gray-400 hover:text-lime-400 transition-colors">
+                    <a href="https://wa.me/524423653095" target="_blank" aria-label="WhatsApp" class="text-gray-300 hover:text-lime-400 transition-colors">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.487 5.235 3.487 8.413 0 6.557-5.338 11.892-11.894 11.892-1.99 0-3.902-.539-5.587-1.544l-6.323 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.447-4.433-9.886-9.888-9.886-5.448 0-9.886 4.434-9.889 9.885.002 2.021.59 3.927 1.696 5.611l-1.026 3.748 3.828-1.004zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.273-.099-.471-.148-.67.148-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.67-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
                     </a>
-                    <a href="mailto:pab.arroyo@outlook.com" aria-label="Email" class="text-gray-400 hover:text-lime-400 transition-colors">
+                    <a href="mailto:pab.arroyo@outlook.com" aria-label="Email" class="text-gray-300 hover:text-lime-400 transition-colors">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6zm-2 0l-8 5-8-5h16zm0 12H4V8l8 5 8-5v10z"/></svg>
                     </a>
-                    <a href="https://www.linkedin.com/in/pablo-estéfano-arroyo-garrido" target="_blank" aria-label="LinkedIn" class="text-gray-400 hover:text-lime-400 transition-colors">
+                    <a href="https://www.linkedin.com/in/pablo-estéfano-arroyo-garrido" target="_blank" aria-label="LinkedIn" class="text-gray-300 hover:text-lime-400 transition-colors">
                         <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                     </a>
                     <a href="#hero" class="text-gray-400 hover:text-lime-400" data-translate-key="footerBackToTop">Back to top <span class="inline-block align-middle">↑</span></a>
@@ -421,10 +448,8 @@
             };
 
             let currentLang = 'en';
-            const langToggle = document.getElementById('lang-toggle');
-            const langIndicator = document.getElementById('lang-indicator');
-            const langEs = document.getElementById('lang-es');
-            const langEn = document.getElementById('lang-en');
+            const langToggleDesktop = document.getElementById('lang-toggle-desktop');
+            const langToggleMobile = document.getElementById('lang-toggle-mobile');
             let radarChart;
 
             const chartData = {
@@ -465,27 +490,46 @@
                     radarChart.update();
                 }
             }
-            
-            if(langToggle) {
-                langToggle.addEventListener('click', () => {
-                    currentLang = currentLang === 'en' ? 'es' : 'en';
-                    if (currentLang === 'es') {
-                        langIndicator.style.transform = 'translateX(100%)';
-                        langEs.classList.remove('text-gray-500');
-                        langEs.classList.add('text-lime-400');
-                        langEn.classList.add('text-gray-500');
-                        langEn.classList.remove('text-lime-400');
-                    } else {
-                        langIndicator.style.transform = 'translateX(0)';
-                        langEn.classList.remove('text-gray-500');
-                        langEn.classList.add('text-lime-400');
-                        langEs.classList.add('text-gray-500');
-                        langEs.classList.remove('text-lime-400');
-                    }
-                    renderContent(currentLang);
+
+            function updateTogglesUI(lang) {
+                const desktop = {
+                    indicator: document.getElementById('lang-indicator'),
+                    en: document.getElementById('lang-en'),
+                    es: document.getElementById('lang-es')
+                };
+                const mobile = {
+                    indicator: document.getElementById('lang-indicator-mobile'),
+                    en: document.getElementById('lang-en-mobile'),
+                    es: document.getElementById('lang-es-mobile')
+                };
+
+                [desktop, mobile].forEach(toggle => {
+                    if (!toggle.indicator) return;
+
+                    const isEs = lang === 'es';
+                    toggle.indicator.style.transform = isEs ? 'translateX(100%)' : 'translateX(0)';
+                    
+                    toggle.es.classList.toggle('text-lime-400', isEs);
+                    toggle.es.classList.toggle('text-gray-400', !isEs);
+                    
+                    toggle.en.classList.toggle('text-lime-400', !isEs);
+                    toggle.en.classList.toggle('text-gray-400', isEs);
                 });
             }
 
+            function switchLanguage() {
+                currentLang = currentLang === 'en' ? 'es' : 'en';
+                renderContent(currentLang);
+                updateTogglesUI(currentLang);
+            }
+
+            if (langToggleDesktop) {
+                langToggleDesktop.addEventListener('click', switchLanguage);
+            }
+            if (langToggleMobile) {
+                langToggleMobile.addEventListener('click', switchLanguage);
+            }
+            
             function openContactModal() {
                 const existingModal = document.getElementById('contact-modal');
                 if (existingModal) return;
@@ -687,6 +731,17 @@
                 link.addEventListener('click', closeDrawer);
             });
 
+            // Fix for anchor links keeping focus color
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    // After clicking, remove focus from the element to remove the focus styles.
+                    this.blur();
+                });
+            });
+
+            // Initial Render
+            renderContent(currentLang);
+            updateTogglesUI(currentLang);
         });
     </script>
 </body>
