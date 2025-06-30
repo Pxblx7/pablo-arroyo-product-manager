@@ -2,6 +2,8 @@
 
 **[See the live CV at pxblx7.github.io/pablo-arroyo-product-manager](https://pxblx7.github.io/pablo-arroyo-product-manager)**
 
+![Demo](https://github.com/pxblx7/pablo-arroyo-product-manager/blob/main/demo.gif?raw=true)
+
 ---
 
 ### 🚀 About This Project
