@@ -1,8 +1,8 @@
 # Pablo Arroyo - Interactive CV | Product Manager
 
-**[See the live CV at pxblx7.github.io/pablo-arroyo-product-manager]([https://pxblx7.github.io/pablo-arroyo-product-manager](https://pablo-arroyo-product-manager.vercel.app/))**
+**[Explore my Interactive CV (Astro + Vercel)](https://pablo-arroyo-product-manager.vercel.app/)**
 
-![Demo](https://github.com/pxblx7/pablo-arroyo-product-manager/blob/main/demo.gif?raw=true)
+![Demo](https://github.com/Pxblx7/pablo-arroyo-product-manager/blob/main/public/demo_v2.gif?raw=true)
 
 ---
 
