@@ -1,0 +1,21 @@
+{
+  "name": "Pablo Arroyo - Technology Product Manager | Interactive CV",
+  "short_name": "Pablo Arroyo CV",
+  "description": "Interactive CV of Pablo Arroyo, a Technology Product Manager with 8+ years of experience in e-commerce and project management.",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#0a0a0a",
+  "background_color": "#0a0a0a",
+  "start_url": ".",
+  "display": "standalone"
+}

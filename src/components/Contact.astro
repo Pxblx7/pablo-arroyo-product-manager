@@ -1,0 +1,76 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="contacto" class="py-24 bg-black border-t border-gray-900">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+         <div class="gsap-reveal">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase">{t('contactTitle')}</h2>
+            <p class="mt-2 text-gray-300 max-w-xl mx-auto">{t('contactSubtitle')}</p>
+            <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-4">
+                 <a id="send-message-btn" href="mailto:pab.arroyo@outlook.com" class="w-full sm:w-auto text-center bg-lime-400 text-black font-bold py-3 px-6 rounded-md font-display uppercase text-lg hover:bg-lime-300 transition-colors ph-capture">{t('contactSendMsg')}</a>
+                 <a href={t('cvFile')} download id="download-cv" class="w-full sm:w-auto text-center bg-gray-700 text-white font-bold py-3 px-6 rounded-md font-display uppercase text-lg hover:bg-gray-600 transition-colors ph-capture">{t('contactDownload')}</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import { ui, defaultLang } from '../i18n/utils';
+
+    const htmlLang = document.documentElement.lang as keyof typeof ui;
+    const currentLang = ui[htmlLang] ? htmlLang : defaultLang;
+    const contactModalTitle = ui[currentLang].contactModalTitle;
+
+    function openContactModal() {
+        const existingModal = document.getElementById('contact-modal');
+        if (existingModal) return;
+
+         const modal = document.createElement('div');
+             modal.id = 'contact-modal';
+             modal.className = 'fixed inset-0 bg-black/70 flex items-center justify-center z-[70] p-4';
+             modal.innerHTML = `
+                 <div class="bg-gray-900 rounded-lg p-8 max-w-md w-full text-center border border-lime-400/20 relative ph-no-capture">
+                     <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+                     <h3 class="font-display text-2xl text-lime-400 mb-6">${contactModalTitle}</h3>
+                     <div class="space-y-4">
+                         <a href="https://wa.me/524423653095" target="_blank" class="block bg-gray-800 hover:bg-gray-700 p-4 rounded-lg text-left transition-colors ph-capture">
+                             <strong class="font-display text-lg">WhatsApp</strong><br>
+                             <span class="text-gray-400 ph-mask">+52 442 365 3095</span>
+                         </a>
+                         <a href="mailto:pab.arroyo@outlook.com" target="_blank" class="block bg-gray-800 hover:bg-gray-700 p-4 rounded-lg text-left transition-colors ph-capture">
+                             <strong class="font-display text-lg">Email</strong><br>
+                             <span class="text-gray-400 ph-mask">pab.arroyo@outlook.com</span>
+                         </a>
+                         <a href="https://www.linkedin.com/in/pablo-estéfano-arroyo-garrido" target="_blank" class="block bg-gray-800 hover:bg-gray-700 p-4 rounded-lg text-left transition-colors ph-capture">
+                             <strong class="font-display text-lg">LinkedIn</strong><br>
+                             <span class="text-gray-400 ph-mask">/in/pablo-estéfano-arroyo-garrido</span>
+                         </a>
+                     </div>
+                 </div>
+             `;
+             document.body.appendChild(modal);
+             const closeBtn = document.getElementById('close-modal-btn');
+             if(closeBtn) closeBtn.onclick = () => modal.remove();
+             modal.onclick = (event) => { if((event.target as HTMLElement).id === 'contact-modal') modal.remove(); };
+    }
+
+    const sendMessageBtn = document.getElementById('send-message-btn');
+    if(sendMessageBtn) {
+        sendMessageBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            openContactModal();
+        });
+    }
+    
+    const contactBtn = document.getElementById('contact-btn');
+    if(contactBtn) {
+         contactBtn.addEventListener('click', (e) => {
+             e.preventDefault();
+             openContactModal();
+         });
+    }
+</script>

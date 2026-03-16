@@ -1,0 +1,4 @@
+
+> pablo-arroyo-product-manager@0.0.1 build
+> astro check && astro build
+

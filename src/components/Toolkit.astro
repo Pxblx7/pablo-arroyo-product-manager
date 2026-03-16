@@ -1,0 +1,43 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="herramientas" class="py-24 bg-black">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 gsap-reveal">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase">{t('toolsTitle')}</h2>
+            <p class="mt-2 text-gray-300">{t('toolsSubtitle')}</p>
+        </div>
+        <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="gsap-reveal">
+                <h3 class="text-2xl font-bold font-display text-lime-400 mb-6 text-center">{t('toolsTech')} & AI Tech</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="AI Agent">Google Antigravity<span class="tool-tooltip">AI Agent</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="Generative UI">v0<span class="tool-tooltip">Generative UI</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="Deployment">Vercel<span class="tool-tooltip">Deployment</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="AI IDE">Roo Code<span class="tool-tooltip">AI IDE</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="Foundation Models">LLMs<span class="tool-tooltip">Foundation Models</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="Data OS">Palantir<span class="tool-tooltip">Data OS</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="+6 years">Power BI<span class="tool-tooltip">+6 years</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="+3 years">GitHub<span class="tool-tooltip">+3 years</span></span>
+                </div>
+            </div>
+            <div class="gsap-reveal">
+                <h3 class="text-2xl font-bold font-display text-lime-400 mb-6 text-center">{t('toolsPM')}</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="+6 years">Jira<span class="tool-tooltip">+6 years</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="+6 years">Monday<span class="tool-tooltip">+6 years</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="+3 years">ClickUp<span class="tool-tooltip">+3 years</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="+5 years">Trello<span class="tool-tooltip">+5 years</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="+5 years">Asana<span class="tool-tooltip">+5 years</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="+5 years">Notion<span class="tool-tooltip">+5 years</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="+5 years">Google Suite<span class="tool-tooltip">+5 years</span></span>
+                    <span class="stat-tag tool-tag text-base font-semibold px-4 py-2 rounded-full" data-tooltip="+10 years">Office 365<span class="tool-tooltip">+10 years</span></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

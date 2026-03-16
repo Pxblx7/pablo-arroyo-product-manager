@@ -1,0 +1,1 @@
+import{g as r}from"./index.CB87Sc6I.js";import{S as t}from"./ScrollTrigger.Cv03IO65.js";r.registerPlugin(t);r.utils.toArray(".gsap-reveal").forEach(o=>{r.to(o,{scrollTrigger:{trigger:o,start:"top 85%",toggleActions:"play none none none"},opacity:1,y:0,duration:.8,ease:"power3.out"})});

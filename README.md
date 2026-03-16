@@ -10,37 +10,38 @@
 
 This is not a traditional CV. It's an interactive web portfolio designed to present my career as a **Technology Product Manager** in a dynamic and memorable way. The concept is inspired by the "player cards" from the world of sports, using visualizations and animations to tell a story of impact, strategy, and results.
 
-The project was born from the reinvention of the `futdupe.com` domain, transforming an initial idea into a powerful personal branding tool that demonstrates not only my experience but also my ability to pivot and create products from scratch.
+The project was recently migrated to a modern architecture, transforming an initial `index.html` prototype into a powerful, component-driven personal branding tool that demonstrates not only my experience but also my ability to pivot, architect solutions, and build products leveraging AI ("Vibecoding").
 
 ### 🛠️ Tech Stack
 
-This site was built from the ground up using a modern, performance-focused stack:
+This site was rebuilt from the ground up to ensure maintainability, scalability, and high performance using a modern web stack:
 
-* **Frontend:** HTML5, CSS3, JavaScript (ES6+)
-* **CSS Framework:** [Tailwind CSS](https://tailwindcss.com/)
+* **Engine:** [Astro 5](https://astro.build/)
+* **CSS Framework:** [Tailwind CSS v4](https://tailwindcss.com/)
 * **Animations:** [GSAP (GreenSock Animation Platform)](https://greensock.com/gsap/)
-* **Data Visualization:** [Chart.js](https://www.chartjs.org/)
+* **Data Visualization:** Canvas API with [Chart.js](https://www.chartjs.org/)
 * **Analytics:** [PostHog](https://posthog.com/)
 
-The project is contained within a single `index.html` file and does not use complex JavaScript frameworks to ensure maximum loading speed.
+The application leverages Astro's partial hydration and static site generation to guarantee maximum loading speed, shipping zero JavaScript except where strictly required for interactive elements.
 
 ### ✨ Key Features
 
-* **100% Responsive Design:** Adaptable to any device.
-* **Fluid Animations with GSAP:** Micro-interactions and entrance animations that guide the user through the content.
-* **Interactive Radar Chart:** A skill visualization that animates on scroll.
+* **100% Responsive Design:** Adaptable to any device with carefully tailored breakpoints.
+* **Fluid Animations with GSAP:** Scroll-triggered micro-interactions and entrance animations that guide the user through the content.
+* **Component-Driven Architecture:** Code structured modularly within Astro (`.astro` files) ensuring strict separation of concerns.
+* **Interactive Radar Chart:** A dynamically rendering native HTML Canvas skill visualization.
 * **Career Timeline:** A visual journey through my professional experience, enriched with logos and animations.
-* **Automatic Achievements Carousel:** An interactive showcase for my main achievements and academic background.
-* **Bilingual Functionality:** Full support for Spanish and English.
-* **Informative Tooltips:** Interactivity in my toolkit to display years of experience.
+* **Achievements Carousel:** An interactive showcase for my main achievements and academic background.
+* **Seamless i18n Localization:** Deep native bilingual functionality supporting English and Spanish seamlessly, with content decoupled into individual JSON configurations (`src/i18n/`).
+* **Vibecoding Showcase:** A newly featured "AI Prototypes & Projects" section mapping real-world artifacts created via AI tooling.
 
 ### 📈 Analytics
 
 To understand user interaction and continuously improve the experience, this project uses PostHog for product analytics. The following custom events are tracked:
 
-* `contact_button_clicked`: Fired when a user clicks the main "Contact" button in the header.
-* `send_message_clicked`: Fired when a user clicks the "Send Message" button in the contact section.
-* `download_cv_clicked`: Fired when a user clicks the "Download CV (PDF)" button.
+* `contact_button_clicked`: Fired when a user clicks the main "Contact" button or the footer CTA.
+* `language_switched`: Fired when the user toggles the application target locale.
+* `download_cv_clicked`: Fired when a user attempts to download the PDF CV.
 
 ### 🔗 Contact
 
@@ -51,4 +52,4 @@ Interested in "signing"? Let's talk.
 
 ---
 
-*This project was designed and built by Pablo Arroyo in collaboration with Gemini.*
+*This project was designed and built by Pablo Arroyo in collaboration with Antigravity / Gemini.*

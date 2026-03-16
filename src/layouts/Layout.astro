@@ -1,0 +1,115 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+	description: string;
+	lang: string;
+}
+
+const { title, description, lang } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content={description}>
+    <meta name="keywords" content="Pablo Arroyo, Product Manager, Technology, E-commerce, CV, Resume, Portfolio, Project Management, Tech, Interactive CV">
+    <link rel="canonical" href="https://pxblx7.github.io/pablo-arroyo-product-manager/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pxblx7.github.io/pablo-arroyo-product-manager/">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:image" content="https://images.unsplash.com/photo-1519703444234-a2b8cca38a49?q=80&w=1200&auto=format&fit=crop">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://pxblx7.github.io/pablo-arroyo-product-manager/">
+    <meta property="twitter:title" content={title}>
+    <meta property="twitter:description" content={description}>
+    <meta property="twitter:image" content="https://images.unsplash.com/photo-1519703444234-a2b8cca38a49?q=80&w=1200&auto=format&fit=crop">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/favicon.ico">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- PostHog Snippet -->
+    <script is:inline>
+      !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init Ie Ts Ms Ee Es Rs capture Ge calculateEventProperties Os register register_once register_for_session unregister unregister_for_session js getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSurveysLoaded onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey canRenderSurveyAsync identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty Ds Fs createPersonProfile Ls Ps opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing Cs debug I As getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
+      posthog.init('phc_hF03L1BpuhOJJFl9lwAUEtRrFmfFQpsBcOLv8MKTSZA', {
+          api_host: 'https://us.i.posthog.com',
+          autocapture: {
+              css_selector_allowlist: ['.ph-capture'],
+          },
+          session_recording: {
+              maskAllInputs: true,
+              maskTextSelector: ".ph-mask",
+              blockSelector: ".ph-no-capture",
+              ignoreSelector: ".ph-ignore",
+              maskInputFn: (text, element) => {
+                  if (element && (element.id === 'user-email' || element.name === 'user-email')) {
+                      return '***@masked-email.com';
+                  }
+                  return text;
+              },
+          }
+      })
+    </script>
+
+    <!-- JSON-LD for SEO -->
+    <script type="application/ld+json" is:inline>
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Pablo Arroyo",
+      "url": "https://pxblx7.github.io/pablo-arroyo-product-manager/",
+      "image": "https://placehold.co/150x150/111827/a3e635?text=PA",
+      "jobTitle": "Product Manager",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Zebrands"
+      },
+      "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "Tecnológico de Monterrey"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/in/pablo-estéfano-arroyo-garrido",
+        "https://wa.me/524423653095"
+      ]
+    }
+    </script>
+</head>
+<body class="antialiased font-sans flex flex-col min-h-screen">
+    <slot />
+    
+    <script>
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Run GSAP initializations here on client load
+      // Shared animation setup can go here, though specific sections should do their own animation
+      gsap.utils.toArray('.gsap-reveal').forEach(el => {
+          gsap.to(el as Element, {
+              scrollTrigger: { trigger: el as Element, start: "top 85%", toggleActions: "play none none none" },
+              opacity: 1, y: 0, duration: 0.8, ease: "power3.out"
+          });
+      });
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="proyectos" class="py-24 bg-black">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 gsap-reveal">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase">{t('projectsTitle')}</h2>
+            <p class="mt-2 text-gray-300">{t('projectsSubtitle')}</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+            <div class="card-item p-6 rounded-lg flex flex-col gsap-reveal"><div class="flex items-center gap-4"><div class="text-3xl">🚚</div><h3 class="text-xl font-bold font-display">{t('projectFedexTitle')}</h3></div><p class="mt-4 text-gray-400 flex-grow">{t('projectFedexDesc')}</p><div class="mt-4"><p class="font-bold text-lime-400 text-lg">{t('projectFedexResult')}</p><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full mt-2 inline-block">{t('atZebrands')}</span></div></div>
+            <div class="card-item p-6 rounded-lg flex flex-col gsap-reveal"><div class="flex items-center gap-4"><div class="text-3xl">💰</div><h3 class="text-xl font-bold font-display">{t('projectCrossSellTitle')}</h3></div><p class="mt-4 text-gray-400 flex-grow">{t('projectCrossSellDesc')}</p><div class="mt-4"><p class="font-bold text-lime-400 text-lg">{t('projectCrossSellResult')}</p><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full mt-2 inline-block">{t('atZebrands')}</span></div></div>
+            <div class="card-item p-6 rounded-lg flex flex-col gsap-reveal"><div class="flex items-center gap-4"><div class="text-3xl">🏪</div><h3 class="text-xl font-bold font-display">{t('projectOmniTitle')}</h3></div><p class="mt-4 text-gray-400 flex-grow">{t('projectOmniDesc')}</p><div class="mt-4"><p class="font-bold text-lime-400 text-lg">{t('projectOmniResult')}</p><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full mt-2 inline-block">{t('atZebrands')}</span></div></div>
+            <div class="card-item p-6 rounded-lg flex flex-col gsap-reveal"><div class="flex items-center gap-4"><div class="text-3xl">🤖</div><h3 class="text-xl font-bold font-display">{t('projectRpaTitle')}</h3></div><p class="mt-4 text-gray-400 flex-grow">{t('projectRpaDesc')}</p><div class="mt-4"><p class="font-bold text-lime-400 text-lg">{t('projectRpaResult')}</p><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full mt-2 inline-block">{t('atNatgas')}</span></div></div>
+            <div class="card-item p-6 rounded-lg flex flex-col gsap-reveal"><div class="flex items-center gap-4"><div class="text-3xl">🌍</div><h3 class="text-xl font-bold font-display">{t('projectGlobalTitle')}</h3></div><p class="mt-4 text-gray-400 flex-grow">{t('projectGlobalDesc')}</p><div class="mt-4"><p class="font-bold text-lime-400 text-lg">{t('projectGlobalResult')}</p><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full mt-2 inline-block">{t('atZebrands')}</span></div></div>
+            <div class="card-item p-6 rounded-lg flex flex-col gsap-reveal"><div class="flex items-center gap-4"><div class="text-3xl">👥</div><h3 class="text-xl font-bold font-display">{t('projectAgileAulaTitle')}</h3></div><p class="mt-4 text-gray-400 flex-grow">{t('projectAgileAulaDesc')}</p><div class="mt-4"><p class="font-bold text-lime-400 text-lg">{t('projectAgileAulaResult')}</p><span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full mt-2 inline-block">{t('tecMonterrey')}</span></div></div>
+        </div>
+
+       <div class="text-center mb-16 gsap-reveal">
+           <h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase text-white">{t('aiProjectsTitle')}</h2>
+           <p class="mt-2 text-gray-300">{t('aiProjectsSubtitle')}</p>
+       </div>
+       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+           
+           <!-- Project 1: Retiro MX -->
+           <a href="https://retirement-calc-lite.vercel.app/" target="_blank" rel="noopener noreferrer" class="card-item p-6 rounded-lg flex flex-col gsap-reveal border-lime-400/30 hover:border-lime-400 relative block group">
+               <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10 transition-transform group-hover:scale-105 shadow-md border border-blue-400 shadow-blue-500/50 hidden sm:block">
+                   Vibecoding
+               </div>
+               <div class="flex items-center gap-4 mb-4 mt-2">
+                   <div class="text-3xl">🏦</div>
+                   <h3 class="text-2xl font-bold font-display group-hover:text-lime-400 transition-colors">{t('projectRetiroTitle')} <span class="inline-block ml-1 opacity-0 group-hover:opacity-100 transition-opacity">↗</span></h3>
+               </div>
+               <p class="mt-2 text-gray-400 flex-grow leading-relaxed group-hover:text-gray-300 transition-colors">{t('projectRetiroDesc')}</p>
+               <div class="mt-6 pt-4 border-t border-gray-800">
+                   <p class="text-sm font-bold text-gray-300 mb-2">Tech Stack:</p>
+                   <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                        <span class="stat-tag px-2 py-1 rounded-full text-blue-400 border-blue-400 sm:hidden">Vibecoding</span>
+                        <span class="stat-tag px-2 py-1 rounded-full">Next.js 14</span>
+                        <span class="stat-tag px-2 py-1 rounded-full">TypeScript</span>
+                        <span class="stat-tag px-2 py-1 rounded-full">Tailwind CSS</span>
+                        <span class="stat-tag px-2 py-1 rounded-full text-lime-400 border-lime-400">Google Gemini</span>
+                        <span class="stat-tag px-2 py-1 rounded-full">Vercel</span>
+                   </div>
+               </div>
+           </a>
+
+           <!-- Project 2: Zebrands Image Converter -->
+           <a href="https://github.com/Pxblx7/zebrands-image-converter" target="_blank" rel="noopener noreferrer" class="card-item p-6 rounded-lg flex flex-col gsap-reveal border-lime-400/30 hover:border-lime-400 relative block group">
+               <div class="absolute top-4 right-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10 transition-transform group-hover:scale-105 shadow-md border border-blue-400 shadow-blue-500/50 hidden sm:block">
+                   Vibecoding
+               </div>
+               <div class="flex items-center gap-4 mb-4 mt-2">
+                   <div class="text-3xl">🖼️</div>
+                   <h3 class="text-2xl font-bold font-display group-hover:text-lime-400 transition-colors">{t('projectZebrandsImgTitle')} <span class="inline-block ml-1 opacity-0 group-hover:opacity-100 transition-opacity">↗</span></h3>
+               </div>
+               <p class="mt-2 text-gray-400 flex-grow leading-relaxed group-hover:text-gray-300 transition-colors">{t('projectZebrandsImgDesc')}</p>
+               <div class="mt-6 pt-4 border-t border-gray-800">
+                   <p class="text-sm font-bold text-gray-300 mb-2">Tech Stack:</p>
+                   <div class="flex flex-wrap gap-2 text-xs font-semibold">
+                        <span class="stat-tag px-2 py-1 rounded-full text-blue-400 border-blue-400 sm:hidden">Vibecoding</span>
+                        <span class="stat-tag px-2 py-1 rounded-full">React</span>
+                        <span class="stat-tag px-2 py-1 rounded-full">Tailwind CSS</span>
+                        <span class="stat-tag px-2 py-1 rounded-full">Vite</span>
+                        <span class="stat-tag px-2 py-1 rounded-full text-lime-400 border-lime-400">Local Asset Conversion</span>
+                   </div>
+               </div>
+           </a>
+
+       </div>
+    </div>
+</section>

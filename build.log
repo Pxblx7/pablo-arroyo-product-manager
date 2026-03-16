@@ -1,0 +1,26 @@
+
+> pablo-arroyo-product-manager@0.0.1 build
+> astro check && astro build
+
+[2m10:27:52 a.m.[22m [31m[1m[vite][22m[39m [31m[2m(ssr)[22m[39m [31mError when evaluating SSR module C:\tech_projects\pablo-arroyo-product-manager\astro.config.mjs: Cannot find module '@tailwindcss/vite' imported from 'C:/tech_projects/pablo-arroyo-product-manager/astro.config.mjs'[39m
+      at fetchModule (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:46842:19)
+      at RunnableDevEnvironment.fetchModule (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:47933:12)
+      at fetchModule (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:47887:21)
+      at handleInvoke (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:39002:28)
+      at EventEmitter.listenerForInvokeHandler (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:39075:25)
+      at EventEmitter.emit (node:events:508:28)
+      at Object.send (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:25190:40)
+      at Object.invoke (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/module-runner.js:621:34)
+      at Object.invoke (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/module-runner.js:682:34)
+      at SSRCompatModuleRunner.getModuleInformation (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/module-runner.js:1205:94)
+[1m[31m[astro][39m[22m Unable to load your Astro config
+
+Cannot find module '@tailwindcss/vite' imported from 'C:/tech_projects/pablo-arroyo-product-manager/astro.config.mjs'
+  [1mLocation:[22m
+    [4mC:\tech_projects\pablo-arroyo-product-manager\node_modules\vite\dist\node\chunks\dep-D4NMHUTW.js:46842:19[24m
+  [1mStack trace:[22m
+[2m    at fetchModule (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:46842:19)
+    at fetchModule (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:47887:21)
+    at EventEmitter.listenerForInvokeHandler (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:39075:25)
+    at Object.send (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/chunks/dep-D4NMHUTW.js:25190:40)
+    at Object.invoke (file:///C:/tech_projects/pablo-arroyo-product-manager/node_modules/vite/dist/node/module-runner.js:682:34)[22m

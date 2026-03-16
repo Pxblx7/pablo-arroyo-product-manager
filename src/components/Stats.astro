@@ -1,0 +1,159 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="stats" class="py-24 bg-black">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 gsap-reveal">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase">{t('statsTitle')}</h2>
+            <p class="mt-2 text-gray-300">{t('statsSubtitle')}</p>
+        </div>
+        
+        <div class="chart-container gsap-reveal">
+            <canvas id="stats-radar-chart"></canvas>
+        </div>
+
+        <div class="max-w-4xl mx-auto mt-16 gsap-reveal">
+            <h3 class="text-2xl font-bold font-display text-center text-lime-400 mb-6">{t('statsBreakdownTitle')}</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-center">
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h4 class="font-bold font-display text-lg">{t('skillAgile')}</h4>
+                    <p class="text-5xl font-bold font-display text-lime-400">95</p>
+                    <div class="mt-2 flex flex-wrap justify-center gap-2">
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">Scrum & Kanban</span>
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">{t('skillAgileTag')}</span>
+                    </div>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h4 class="font-bold font-display text-lg">{t('skillStrategy')}</h4>
+                    <p class="text-5xl font-bold font-display text-lime-400">94</p>
+                    <div class="mt-2 flex flex-wrap justify-center gap-2">
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">{t('skillStrategyTag1')}</span>
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">{t('skillStrategyTag2')}</span>
+                    </div>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h4 class="font-bold font-display text-lg">{t('skillBusiness')}</h4>
+                    <p class="text-5xl font-bold font-display text-lime-400">92</p>
+                    <div class="mt-2 flex flex-wrap justify-center gap-2">
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">{t('skillBusinessTag1')}</span>
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">{t('skillBusinessTag2')}</span>
+                    </div>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h4 class="font-bold font-display text-lg">{t('skillLeadership')}</h4>
+                    <p class="text-5xl font-bold font-display text-lime-400">90</p>
+                    <div class="mt-2 flex flex-wrap justify-center gap-2">
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">{t('skillLeadershipTag1')}</span>
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">{t('skillLeadershipTag2')}</span>
+                    </div>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h4 class="font-bold font-display text-lg">{t('skillRisk')}</h4>
+                    <p class="text-5xl font-bold font-display text-lime-400">90</p>
+                    <div class="mt-2 flex flex-wrap justify-center gap-2">
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full text-blue-400 border-blue-400">Vibecoding</span>
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">MVP FedEx</span>
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">RPA 87% time saving</span>
+                    </div>
+                </div>
+                <div class="bg-gray-900 p-4 rounded-lg">
+                    <h4 class="font-bold font-display text-lg">{t('skillData')}</h4>
+                    <p class="text-5xl font-bold font-display text-lime-400">85</p>
+                    <div class="mt-2 flex flex-wrap justify-center gap-2">
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">Power BI</span>
+                        <span class="stat-tag text-xs font-semibold px-2 py-1 rounded-full">Google Analytics</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import { gsap } from 'gsap';
+    import ScrollTrigger from 'gsap/ScrollTrigger';
+    import Chart from 'chart.js/auto';
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    const checkLang = document.documentElement.lang;
+    const isEs = checkLang === 'es';
+
+    const chartData = {
+        es: {
+            labels: [['Metodologías', 'Ágiles'], ['Estrategia y', 'Roadmap'], ['Impacto en', 'Negocio'], ['Liderazgo y', 'Comunicación'], ['Análisis', 'de Datos'], ['Gestión Técnica', 'y Riesgos']],
+            data: [95, 94, 92, 90, 85, 90]
+        },
+        en: {
+             labels: [['Agile', 'Methodologies'], ['Strategy &', 'Roadmap'], ['Business', 'Impact'], ['Leadership &', 'Communication'], ['Data', 'Analysis'], ['Technical & Risk', 'Management']],
+             data: [95, 94, 92, 90, 85, 90]
+        }
+    };
+
+    const targetData = isEs ? chartData.es : chartData.en;
+
+    const ctx = document.getElementById('stats-radar-chart') as HTMLCanvasElement;
+    if(ctx) {
+        const radarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: targetData.labels,
+                datasets: [{
+                    label: 'Skill Level',
+                    data: [0,0,0,0,0,0],
+                    backgroundColor: 'rgba(163, 230, 53, 0.2)',
+                    borderColor: 'rgba(163, 230, 53, 1)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(163, 230, 53, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(163, 230, 53, 1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(255, 255, 255, 0.2)' },
+                        grid: { color: 'rgba(255, 255, 255, 0.2)' },
+                        pointLabels: { 
+                            color: '#F9FAFB',
+                            font: { family: "'Rajdhani', sans-serif", size: 14 }
+                        },
+                        ticks: {
+                            display: true,
+                            color: 'rgba(163, 230, 53, 1)',
+                            backdropColor: 'rgba(0,0,0,0)',
+                            stepSize: 20,
+                            font: { weight: 'bold' }
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: { legend: { display: false }, tooltip: { enabled: false } }
+            }
+        });
+        
+        ScrollTrigger.create({
+            trigger: '#stats-radar-chart',
+            start: 'top 80%',
+            once: true,
+            onEnter: () => {
+                gsap.to(radarChart.data.datasets[0].data, {
+                    0: targetData.data[0], 1: targetData.data[1], 2: targetData.data[2], 3: targetData.data[3], 4: targetData.data[4], 5: targetData.data[5],
+                    duration: 1.5,
+                    ease: 'power3.out',
+                    onUpdate: function() {
+                        radarChart.update('none');
+                    }
+                });
+            }
+        });
+    }
+</script>

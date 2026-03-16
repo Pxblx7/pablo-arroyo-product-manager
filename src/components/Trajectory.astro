@@ -1,0 +1,91 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="trayectoria" class="py-24 bg-black border-t border-gray-900">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+       <div class="text-center mb-16 gsap-reveal">
+           <h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase">{t('trajectoryTitle')}</h2>
+           <p class="mt-2 text-gray-300">{t('trajectorySubtitle')}</p>
+       </div>
+       <div class="relative max-w-4xl mx-auto">
+           <div class="absolute left-1/2 -translate-x-1/2 h-full w-0.5 timeline-line"></div>
+           
+           <!-- Timeline Item 1 -->
+           <div class="relative gsap-reveal timeline-item mb-12">
+               <div class="flex items-center md:justify-end w-full">
+                   <div class="timeline-content w-full md:w-1/2 md:pr-12 group">
+                       <div class="p-6 rounded-lg timeline-card">
+                           <div class="flex items-center justify-start md:justify-end gap-4 mb-2">
+                               <h3 class="font-bold text-xl font-display text-lime-400">Zebrands</h3>
+                               <img src="https://placehold.co/80x80/FFFFFF/000000?text=ZB" alt="Zebrands company logo" class="company-logo h-10 w-10 rounded-full" />
+                           </div>
+                           <p class="text-sm text-gray-400 text-left md:text-right">{t('zebrandsRole')}</p>
+                           <time class="text-sm font-medium text-gray-500 block text-left md:text-right">{t('zebrandsDate')}</time>
+                           <p class="mt-2 text-gray-300 text-left md:text-right">{t('zebrandsDesc')}</p>
+                       </div>
+                   </div>
+               </div>
+               <div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div>
+           </div>
+           
+           <!-- Timeline Item 2 -->
+           <div class="relative gsap-reveal timeline-item mb-12">
+               <div class="flex items-center md:justify-start w-full">
+                   <div class="timeline-content w-full md:w-1/2 md:pl-12 group">
+                       <div class="p-6 rounded-lg timeline-card">
+                           <div class="flex items-center gap-4 mb-2">
+                               <img src="https://placehold.co/80x80/1E3A8A/FFFFFF?text=TEC" alt="Tecnológico de Monterrey university logo" class="company-logo h-10 w-10 rounded-full" />
+                               <h3 class="font-bold text-xl font-display text-lime-400">Tecnológico de Monterrey</h3>
+                           </div>
+                           <p class="text-sm text-gray-400">{t('tecRole')}</p>
+                           <time class="text-sm font-medium text-gray-500 block">{t('tecDate')}</time>
+                           <p class="mt-2 text-gray-300">{t('tecDesc')}</p>
+                       </div>
+                   </div>
+               </div>
+               <div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div>
+           </div>
+           
+           <!-- Timeline Item 3 -->
+           <div class="relative gsap-reveal timeline-item mb-12">
+               <div class="flex items-center md:justify-end w-full">
+                   <div class="timeline-content w-full md:w-1/2 md:pr-12 group">
+                       <div class="p-6 rounded-lg timeline-card">
+                           <div class="flex items-center justify-start md:justify-end gap-4 mb-2">
+                               <h3 class="font-bold text-xl font-display text-lime-400">Natgas</h3>
+                               <img src="https://placehold.co/80x80/047857/FFFFFF?text=NG" alt="Natgas company logo" class="company-logo h-10 w-10 rounded-full" />
+                           </div>
+                           <p class="text-sm text-gray-400 text-left md:text-right">{t('natgasRole')}</p>
+                           <time class="text-sm font-medium text-gray-500 block text-left md:text-right">{t('natgasDate')}</time>
+                           <p class="mt-2 text-gray-300 text-left md:text-right">{t('natgasDesc')}</p>
+                       </div>
+                   </div>
+               </div>
+               <div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div>
+           </div>
+           
+           <!-- Timeline Item 4 -->
+           <div class="relative gsap-reveal timeline-item">
+               <div class="flex items-center md:justify-start w-full">
+                   <div class="timeline-content w-full md:w-1/2 md:pl-12 group">
+                       <div class="p-6 rounded-lg timeline-card">
+                           <div class="flex items-center gap-4 mb-2">
+                               <img src="https://placehold.co/80x80/FBBF24/000000?text=PLT" alt="Profesionales en Logística y Transporte company logo" class="company-logo h-10 w-10 rounded-full" />
+                               <h3 class="font-bold text-xl font-display text-lime-400">{t('peltCompany')}</h3>
+                           </div>
+                           <p class="text-sm text-gray-400">{t('peltRole')}</p>
+                           <time class="text-sm font-medium text-gray-500 block">{t('peltDate')}</time>
+                           <p class="mt-2 text-gray-300">{t('peltDesc')}</p>
+                       </div>
+                   </div>
+               </div>
+               <div class="timeline-dot absolute left-1/2 -translate-x-1/2 mt-1.5 w-4 h-4 rounded-full"></div>
+           </div>
+           
+       </div>
+   </div>
+</section>

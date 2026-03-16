@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import Projects from '../../components/Projects.astro';
+import Trajectory from '../../components/Trajectory.astro';
+import Stats from '../../components/Stats.astro';
+import Achievements from '../../components/Achievements.astro';
+import Toolkit from '../../components/Toolkit.astro';
+import Contact from '../../components/Contact.astro';
+import Footer from '../../components/Footer.astro';
+
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+// Force Spanish language for this page regardless of how it's called
+const lang = 'es';
+const t = useTranslations(lang);
+---
+
+<Layout title="Pablo Arroyo - Technology Product Manager | Interactive CV" description={t('metaDescription')} lang={lang}>
+    <Navbar />
+    <main>
+        <Hero />
+        <Trajectory />
+        <Projects />
+        <Stats />
+        <Achievements />
+        <Toolkit />
+        <Contact />
+    </main>
+    <Footer />
+</Layout>

@@ -1,0 +1,33 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="hero" class="hero-bg min-h-screen flex items-center justify-center relative">
+    <div class="text-center px-4">
+        <div id="hero-content">
+            <img src="https://placehold.co/150x150/111827/a3e635?text=PA" alt="Profile picture of Pablo Arroyo" class="w-32 h-32 md:w-40 md:h-40 rounded-full mx-auto mb-6 border-4 border-gray-800 shadow-lg gsap-reveal">
+            <h1 class="text-4xl md:text-6xl font-bold tracking-tighter uppercase font-display gsap-reveal ph-mask">{t('heroName')}</h1>
+            <h2 class="text-xl md:text-2xl text-lime-400 font-semibold tracking-wider font-display mt-2 gsap-reveal">{t('heroRole')}</h2>
+            <p class="mt-6 max-w-2xl mx-auto text-lg text-gray-300 gsap-reveal">{t('heroTagline')}</p>
+        </div>
+        <a href="#trayectoria" id="scroll-arrow" class="absolute bottom-20 left-1/2 -translate-x-1/2 gsap-reveal" aria-label="Go to next section">
+            <svg class="w-10 h-10 text-gray-500 hover:text-lime-400 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+        </a>
+    </div>
+</section>
+
+<script>
+    import { gsap } from 'gsap';
+    
+    const heroTl = gsap.timeline({ delay: 0.3 });
+    heroTl.to("#hero-content .gsap-reveal", {
+        opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power3.out",
+    })
+    .to("#scroll-arrow", { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, "-=0.5")
+    .to("#scroll-arrow", { y: 10, repeat: -1, yoyo: true, duration: 1.2, ease: "power1.inOut" });
+</script>

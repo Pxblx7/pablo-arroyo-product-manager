@@ -1,0 +1,1 @@
+import{g as o}from"./index.CB87Sc6I.js";const e=o.timeline({delay:.3});e.to("#hero-content .gsap-reveal",{opacity:1,y:0,duration:.8,stagger:.15,ease:"power3.out"}).to("#scroll-arrow",{opacity:1,y:0,duration:.5,ease:"power3.out"},"-=0.5").to("#scroll-arrow",{y:10,repeat:-1,yoyo:!0,duration:1.2,ease:"power1.inOut"});

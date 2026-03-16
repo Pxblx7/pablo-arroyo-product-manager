@@ -1,0 +1,95 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section id="logros" class="py-24 bg-black overflow-hidden border-t border-gray-900">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 gsap-reveal">
+            <h2 class="text-4xl md:text-5xl font-bold tracking-tight font-display uppercase">{t('achievementsTitle')}</h2>
+            <p class="mt-2 text-gray-300">{t('achievementsSubtitle')}</p>
+        </div>
+        <div class="relative gsap-reveal">
+            <div class="achievement-carousel-wrapper">
+                <div id="achievement-carousel" class="achievement-carousel flex space-x-4 md:space-x-8 pb-8 px-4">
+                    <div class="achievement-card flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 p-6 rounded-lg border border-transparent hover:border-lime-400 transition-colors min-h-[260px] flex flex-col justify-center text-center">
+                        <p class="text-4xl mb-2">🎓</p>
+                        <h3 class="font-bold text-xl font-display text-lime-400 mt-2">{t('bachelorTitle')}</h3>
+                        <p class="text-gray-400 mt-2">{t('bachelorSchool')}</p>
+                    </div>
+                    <div class="achievement-card flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 p-6 rounded-lg border border-transparent hover:border-lime-400 transition-colors min-h-[260px] flex flex-col justify-center text-center">
+                        <p class="text-4xl mb-2">🎓</p>
+                        <h3 class="font-bold text-xl font-display text-lime-400 mt-2">{t('masterTitle')}</h3>
+                        <p class="text-gray-400 mt-2">{t('masterSchool')}</p>
+                    </div>
+                    <div class="achievement-card flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 p-6 rounded-lg border border-transparent hover:border-lime-400 transition-colors min-h-[260px] flex flex-col justify-center text-center">
+                        <p class="text-4xl mb-2">📜</p>
+                        <h3 class="font-bold text-xl font-display text-lime-400 mt-2">{t('pmpTitle')}</h3>
+                        <p class="text-gray-400 mt-2">{t('pmpDesc')}</p>
+                    </div>
+                    <div class="achievement-card flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 p-6 rounded-lg border border-transparent hover:border-lime-400 transition-colors min-h-[260px] flex flex-col justify-center text-center">
+                        <p class="text-4xl mb-2">🏆</p>
+                        <h3 class="font-bold text-xl font-display text-lime-400 mt-2">{t('honorTitle')}</h3>
+                        <p class="text-gray-400 mt-2">{t('honorDesc')}</p>
+                    </div>
+                    <div class="achievement-card flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 p-6 rounded-lg border border-transparent hover:border-lime-400 transition-colors min-h-[260px] flex flex-col justify-center text-center">
+                        <p class="text-4xl mb-2">⭐</p>
+                        <h3 class="font-bold text-xl font-display text-lime-400 mt-2">{t('teachingTitle')}</h3>
+                        <p class="text-gray-400 mt-2">{t('teachingDesc')}</p>
+                    </div>
+                    <div class="achievement-card flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 bg-gray-900 p-6 rounded-lg border border-transparent hover:border-lime-400 transition-colors min-h-[260px] flex flex-col justify-center text-center">
+                        <p class="text-4xl mb-2">🏅</p>
+                        <h3 class="font-bold text-xl font-display text-lime-400 mt-2">{t('egelTitle')}</h3>
+                        <p class="text-gray-400 mt-2">{t('egelDesc')}</p>
+                    </div>
+                </div>
+                <button id="prev-btn" class="carousel-button prev ph-capture" aria-label="Previous">‹</button>
+                <button id="next-btn" class="carousel-button next ph-capture" aria-label="Next">›</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const carousel = document.getElementById('achievement-carousel');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let carouselInterval: any;
+
+    const startCarousel = () => {
+        carouselInterval = setInterval(() => {
+            if(!carousel) return;
+            const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+            if (Math.ceil(carousel.scrollLeft) >= maxScrollLeft - 1) { 
+                carousel.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                const firstCard = carousel.querySelector('.achievement-card') as HTMLElement;
+                if(firstCard) carousel.scrollBy({ left: firstCard.offsetWidth + 16, behavior: 'smooth' });
+            }
+        }, 3000);
+    };
+
+    const stopCarousel = () => {
+        clearInterval(carouselInterval);
+    };
+    
+    const resetCarousel = () => {
+        stopCarousel();
+        startCarousel();
+    }
+
+    if(carousel && prevBtn && nextBtn) {
+        const getScrollStep = () => {
+            const firstCard = carousel.querySelector('.achievement-card') as HTMLElement;
+            return firstCard ? firstCard.offsetWidth + 16 : 0;
+        };
+
+        nextBtn.addEventListener('click', () => { carousel.scrollBy({ left: getScrollStep(), behavior: 'smooth' }); resetCarousel(); });
+        prevBtn.addEventListener('click', () => { carousel.scrollBy({ left: -getScrollStep(), behavior: 'smooth' }); resetCarousel(); });
+        carousel.addEventListener('pointerenter', stopCarousel, {passive: true});
+        carousel.addEventListener('pointerleave', startCarousel, {passive: true});
+        startCarousel();
+    }
+</script>
